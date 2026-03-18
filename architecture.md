@@ -10,7 +10,7 @@ AI Brief Generation
 ↓  
 Recommendation  
 ↓  
-Approval Decision  
+Approval Recommendation  
 
 ---
 
@@ -28,13 +28,11 @@ Approval Decision
 
 - Named Credential callouts
 - Structured payload
-- Response stored in Salesforce
 
 ---
 
 ## Design Principles
 
 - Salesforce-native
-- No hardcoded secrets
 - Minimal outbound data
 - Human-in-the-loop
