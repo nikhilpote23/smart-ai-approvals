@@ -25,7 +25,7 @@ Check:
 
 ## Is this secure?
 
-Yes. Uses Salesforce security model.
+Yes. Uses Salesforce security model so respects user access.
 
 ---
 
