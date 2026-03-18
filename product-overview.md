@@ -41,6 +41,13 @@ A single decision interface:
 
 ---
 
+## Supported Objects
+
+- Salesforce CPQ Quote
+- Opportunity
+
+---
+
 ## Principle
 
 AI recommends, Humans make decisions.
