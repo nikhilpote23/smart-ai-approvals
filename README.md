@@ -1,5 +1,10 @@
 # Smart AI Approvals
 
+## Demo
+
+🎥 Coming soon
+
+---
 **AI-powered approval intelligence for Salesforce**
 
 Smart AI Approvals transforms complex Salesforce deal approvals into **clear, executive-ready decisions**.
@@ -51,6 +56,35 @@ Smart AI Approvals introduces:
 - Finance approval teams
 - Deal Desk
 - Enterprise sales leadership
+
+---
+
+## Demo
+
+🎥 Coming soon
+
+---
+
+## Example Output
+
+Deal Summary  
+ACV: $420K  
+Discount: 32%  
+
+Risk  
+• Margin below average  
+
+Recommendation  
+Approve with condition  
+
+---
+
+## Why Teams Install
+
+- Faster approvals  
+- Better decisions  
+- Reduced manual work  
+- Higher deal quality
 
 ---
 
