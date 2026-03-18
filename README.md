@@ -1,9 +1,5 @@
 # Smart AI Approvals
 
-## Demo
-
-🎥 Coming soon
-
 ---
 **AI-powered approval intelligence for Salesforce**
 
