@@ -2,7 +2,7 @@
 
 ---
 
-## Step 1 — Assign Permissions
+## Step 1 — Assign Permission Sets
 
 - Approval_Admin
 - Approval_Approver
@@ -10,7 +10,7 @@
 
 ---
 
-## Step 2 — Configure Policies
+## Step 2 — Configure Policies in Custom Metadata
 
 Define:
 
@@ -21,7 +21,7 @@ Define:
 
 ---
 
-## Step 3 — Configure Field Mappings
+## Step 3 — Configure Field Mappings in Custom Metadata
 
 Map:
 
@@ -37,6 +37,7 @@ Map:
 ## Step 4 — Configure AI
 
 - create Named Credential
+- create custom setting record with Named Credential Name, LLM Provider, API Key
 - validate connection
 
 ---
