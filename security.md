@@ -20,10 +20,3 @@
 
 - minimal outbound data
 - admin-controlled mappings
-
----
-
-## Logging
-
-- audit logs stored in Salesforce
-- no credential logging
