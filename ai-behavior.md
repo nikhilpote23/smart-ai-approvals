@@ -1,12 +1,12 @@
 # AI Behavior
 
-Smart AI Approvals uses AI for decision support only.
+Smart AI Approvals uses AI for decision guidance only.
 
 ---
 
 ## What AI Does
 
-- summarizes deal data
+- summarizes deal & related data
 - highlights risks
 - explains recommendation
 
