@@ -6,7 +6,7 @@
 
 1. Create approval request
 2. Link opportunity / quote
-3. Submit
+3. Change status as Submit
 
 ---
 
@@ -15,7 +15,8 @@
 1. Open request
 2. Review AI Deal Brief
 3. Evaluate recommendation
-4. Approve / Reject
+4. ASK AI followup questions or reasoning
+5. Approve / Reject
 
 ---
 
