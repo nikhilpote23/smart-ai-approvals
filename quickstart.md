@@ -6,7 +6,7 @@ Get from install → first approval.
 
 ## Step 1 — Install
 
-Deploy Smart AI Approvals to your Salesforce org.
+Install Smart AI Approvals in your Salesforce org that has Salesforce CPQ installed.
 
 ---
 
@@ -22,7 +22,9 @@ Assign:
 
 ## Step 3 — Configure AI
 
-Set up Named Credential for your AI provider.
+Set up Custom setting with your AI provider information.
+Set up Named Credential for your AI provider to make LLM callout.
+Add ApprovalBrief component in a new tab "AI Deal Brief" on Approval Request lightning page.
 
 ---
 
@@ -42,9 +44,10 @@ Open:
 
 You should see:
 
-- summary
+- deal highlights
 - recommendation
-- analysis
+- AI analysis
+- ASK AI
 
 ---
 
