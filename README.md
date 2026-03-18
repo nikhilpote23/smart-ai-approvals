@@ -24,7 +24,7 @@ Approvals are slow because:
 
 Smart AI Approvals introduces:
 
-> **Decision Intelligence for Salesforce approvals**
+> **Decision Intelligence for Deal approvals**
 
 ---
 
