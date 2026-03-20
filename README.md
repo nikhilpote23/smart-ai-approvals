@@ -77,15 +77,20 @@ Smart AI Approvals introduces:
 ## 📄 Example Output
 
 Deal Summary
-ACV: $420K
-Discount: 32% (Above average)
+
+- ACV: $420K
+
+- Discount: 32% (Above average)
 
 Risks
-• Margin below benchmark
-• Extended payment terms
+
+- Margin below benchmark
+
+- Extended payment terms
 
 Recommendation
-Approve with condition: Payment term ≤ 45 days
+
+- Approve with condition: Payment term ≤ 45 days
 
 ---
 
