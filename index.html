@@ -1,148 +1,937 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart AI Approvals</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="AI-powered approval intelligence for Salesforce. Turn fragmented approvals into clear, executive-ready decisions."
+  />
 
   <style>
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-2: #f1f5fb;
+      --text: #102a56;
+      --muted: #5d6f8b;
+      --border: #d9e2ef;
+      --primary: #1f6fff;
+      --primary-dark: #0f5ae0;
+      --accent: #10b981;
+      --shadow: 0 12px 30px rgba(16, 42, 86, 0.08);
+      --radius: 18px;
+      --max: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #0b0b0c;
-      color: #fff;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img,
+    video {
+      max-width: 100%;
+      display: block;
+    }
+
     .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 60px 20px;
-      text-align: center;
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(247, 249, 252, 0.88);
+      border-bottom: 1px solid rgba(217, 226, 239, 0.8);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 74px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 30px;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #1f6fff, #10b981);
+      display: grid;
+      place-items: center;
+      color: white;
+      font-weight: 800;
+      font-size: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: var(--text);
+      color: white;
+      font-weight: 700;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 56px 0 24px;
+    }
+
+    .hero-wrap {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #eaf1ff;
+      color: var(--primary-dark);
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 18px;
     }
 
     h1 {
-      font-size: 48px;
-      margin-bottom: 10px;
+      margin: 0 0 16px;
+      font-size: clamp(44px, 8vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -0.06em;
+      font-weight: 900;
     }
 
-    h2 {
-      font-size: 24px;
-      color: #aaa;
-      margin-bottom: 40px;
+    .hero p.lead {
+      margin: 0;
+      font-size: clamp(18px, 2.3vw, 24px);
+      color: var(--muted);
+      max-width: 760px;
     }
 
-    .highlight {
-      color: #00ffa3;
-      font-weight: bold;
+    .hero p.lead strong {
+      color: var(--text);
     }
 
-    .cta {
-      margin-top: 30px;
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
     }
 
-    .cta a {
-      display: inline-block;
-      padding: 14px 24px;
-      margin: 10px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 800;
+      transition: 0.2s ease;
     }
 
-    .primary {
-      background: #00ffa3;
-      color: #000;
-    }
-
-    .secondary {
-      border: 1px solid #444;
+    .btn-primary {
+      background: var(--primary);
       color: #fff;
+      box-shadow: 0 10px 24px rgba(31, 111, 255, 0.2);
     }
 
-    .gif {
-      margin: 40px 0;
-      border-radius: 12px;
-      overflow: hidden;
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
     }
 
-    .grid {
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      background: #f8fbff;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card .mini-label {
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 14px;
+    }
+
+    .hero-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
-      margin-top: 40px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .metric {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .metric .label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .metric .value {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .metric.green { background: #edfdf5; }
+    .metric.orange { background: #fff7ed; }
+    .metric.blue { background: #eff6ff; }
+
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    section {
+      padding: 28px 0;
+    }
+
+    .section-head {
+      max-width: 860px;
+      margin-bottom: 24px;
+    }
+
+    .section-kicker {
+      color: var(--primary-dark);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 0;
+      font-size: 18px;
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+      align-items: stretch;
     }
 
     .card {
-      background: #111;
-      padding: 20px;
-      border-radius: 12px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 24px;
     }
 
-    .section {
-      margin-top: 80px;
+    .problem-list,
+    .value-list,
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .problem-item,
+    .value-item,
+    .faq-item {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      background: #fff;
+    }
+
+    .problem-item strong,
+    .value-item strong,
+    .faq-item strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 18px;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .blog-flow {
+      display: grid;
+      gap: 18px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+    }
+
+    .flow-num {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #eaf1ff;
+      color: var(--primary-dark);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .flow-step h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .media-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .media-caption {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      background: #fbfdff;
+      font-weight: 600;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .feature-card .icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: #eaf1ff;
+      margin-bottom: 14px;
+      font-size: 20px;
+    }
+
+    .feature-card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .feature-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .proof-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .proof-box {
+      background: linear-gradient(180deg, #ffffff 0%, #f6faff 100%);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .proof-box .num {
+      font-size: 32px;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      margin-bottom: 6px;
+    }
+
+    .proof-box .label {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .install {
+      background: linear-gradient(135deg, #102a56 0%, #1a4c9c 100%);
+      color: white;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 24px 50px rgba(16, 42, 86, 0.22);
+    }
+
+    .install h2 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 48px);
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+    }
+
+    .install p {
+      margin: 0;
+      color: rgba(255,255,255,0.82);
+      font-size: 18px;
+      max-width: 760px;
+    }
+
+    .install .hero-ctas {
+      margin-top: 24px;
+    }
+
+    .install .btn-secondary {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.2);
+      color: white;
+    }
+
+    footer {
+      padding: 28px 0 48px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border), transparent);
+      margin: 18px 0 0;
+    }
+
+    @media (max-width: 980px) {
+      .hero-wrap,
+      .two-col,
+      .feature-grid,
+      .proof-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        gap: 14px;
+      }
+
+      .brand {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        padding-top: 32px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-ctas,
+      .cta-stack {
+        flex-direction: column;
+      }
+
+      .btn,
+      .nav-cta {
+        width: 100%;
+      }
+
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 
 <body>
+  <div class="topbar">
+    <div class="container nav">
+      <a href="#top" class="brand">
+        <span class="brand-badge">AI</span>
+        <span>Smart AI Approvals</span>
+      </a>
 
-<div class="container">
+      <div class="nav-links">
+        <a href="#problem">Problem</a>
+        <a href="#solution">Solution</a>
+        <a href="#how">How It Works</a>
+        <a href="#screens">Screens</a>
+        <a href="#faq">FAQ</a>
+      </div>
 
-  <h1>Smart AI Approvals</h1>
-  <h2>Salesforce approvals are still broken.</h2>
-
-  <p>Too many fields. Too many objects. Not enough context.</p>
-
-  <h2 class="highlight">1 deal → 1 decision brief</h2>
-
-  <div class="cta">
-    <a href="#" class="primary">Install Now</a>
-    <a href="#" class="secondary">View Docs</a>
-  </div>
-
-  <div class="section">
-    <h2>What You Get Instantly</h2>
-
-    <div class="grid">
-      <div class="card">Deal Summary</div>
-      <div class="card">Risk Signals</div>
-      <div class="card">Policy Checks</div>
-      <div class="card">Similar Deals</div>
-      <div class="card">AI Recommendation</div>
+      <a href="#install" class="nav-cta">Install Now</a>
     </div>
   </div>
 
-  <div class="section">
-    <h2>From Chaos → Clarity</h2>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-wrap">
+        <div>
+          <div class="eyebrow">⚡ Salesforce approvals are still too manual</div>
 
-    <div class="grid">
-      <div class="card">❌ Multiple Objects</div>
-      <div class="card">❌ Manual Review</div>
-      <div class="card">❌ Guesswork</div>
-      <div class="card">❌ Slow Approvals</div>
+          <h1>
+            Close deals faster.<br />
+            Approve with clarity.
+          </h1>
 
-      <div class="card">✅ Single View</div>
-      <div class="card">✅ AI Brief</div>
-      <div class="card">✅ Clear Decision</div>
-      <div class="card">✅ Faster Deals</div>
+          <p class="lead">
+            Smart AI Approvals turns fragmented Salesforce approval workflows into
+            <strong>clear, executive-ready decisions</strong> with AI-generated deal briefs,
+            policy checks, historical benchmarks, and recommendation guidance.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="YOUR_PRODUCTION_INSTALL_LINK" class="btn btn-primary">Install in Production</a>
+            <a href="YOUR_SANDBOX_INSTALL_LINK" class="btn btn-secondary">Install in Sandbox</a>
+            <a href="#video" class="btn btn-secondary">Watch Demo</a>
+          </div>
+
+          <div class="trust-row">
+            <span class="pill">RevOps</span>
+            <span class="pill">Sales Ops</span>
+            <span class="pill">Finance</span>
+            <span class="pill">Deal Desk</span>
+            <span class="pill">Sales Leadership</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mini-label">What approvers get instantly</div>
+
+          <div class="hero-grid">
+            <div class="metric blue">
+              <div class="label">Deal summary</div>
+              <div class="value">ACV • Discount • Terms</div>
+            </div>
+            <div class="metric green">
+              <div class="label">Risk signals</div>
+              <div class="value">Policy & pricing issues</div>
+            </div>
+            <div class="metric">
+              <div class="label">Benchmark</div>
+              <div class="value">Similar deals context</div>
+            </div>
+            <div class="metric orange">
+              <div class="label">Recommendation</div>
+              <div class="value">Approve / Reject / Conditions</div>
+            </div>
+          </div>
+
+          <div class="trust-row" style="margin-top:18px;">
+            <span class="pill">1 deal → 1 decision brief</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem">
+      <div class="container two-col">
+        <div class="section-head">
+          <div class="section-kicker">The problem</div>
+          <h2>Approvals slow revenue when context is scattered everywhere.</h2>
+          <p>
+            Most approvers still jump across Opportunity, Quote, pricing fields, contract terms,
+            exception notes, and approval comments just to understand a single deal.
+          </p>
+        </div>
+
+        <div class="card problem-list">
+          <div class="problem-item">
+            <strong>Too many records</strong>
+            <div class="muted">Decision context is spread across multiple Salesforce objects.</div>
+          </div>
+          <div class="problem-item">
+            <strong>Too much manual interpretation</strong>
+            <div class="muted">Approvers must read, compare, and piece together the story themselves.</div>
+          </div>
+          <div class="problem-item">
+            <strong>No fast benchmark context</strong>
+            <div class="muted">“Have we approved something like this before?” is still a manual question.</div>
+          </div>
+          <div class="problem-item">
+            <strong>Slow decisions cost deals</strong>
+            <div class="muted">The longer approvals take, the more revenue velocity suffers.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solution">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">The solution</div>
+          <h2>One approval request becomes one decision-ready brief.</h2>
+          <p>
+            Smart AI Approvals gives approvers a structured summary with what matters most:
+            deal highlights, risk signals, policy reasoning, benchmark context, and a clear recommendation.
+          </p>
+        </div>
+
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="icon">📄</div>
+            <h3>AI Deal Brief</h3>
+            <p>Generate a concise summary of the opportunity, quote, pricing, terms, and approval context.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">⚠️</div>
+            <h3>Risk Signals</h3>
+            <p>Surface discount, payment term, margin, and policy exceptions instantly.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>Similar Deal Benchmark</h3>
+            <p>Give approvers historical context so they can compare the current request to prior deals.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🧭</div>
+            <h3>Recommendation Reasoning</h3>
+            <p>Explain why the system recommends approve, reject, or approve with conditions.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">💬</div>
+            <h3>Ask AI</h3>
+            <p>Let approvers ask follow-up questions without losing context or leaving the workflow.</p>
+          </div>
+
+          <div class="feature-card">
+            <div class="icon">🔐</div>
+            <h3>Policy Stays in Control</h3>
+            <p>AI supports decisions. Human approvers and deterministic rules remain the control layer.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">See it in action</div>
+          <h2>From fragmented data to a clear approval decision.</h2>
+          <p>
+            Watch the product turn a complex discount exception into a structured, explainable approval workflow.
+          </p>
+        </div>
+
+        <div class="media-card">
+          <video controls playsinline preload="metadata">
+            <source src="./smartAIApprovals.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+          <div class="media-caption">
+            Smart AI Approvals demo — AI brief, benchmark context, recommendation reasoning, and decision flow.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">How it works</div>
+          <h2>A blog-style walkthrough of the product flow.</h2>
+          <p>
+            This is the exact story your buyer should understand within the first minute.
+          </p>
+        </div>
+
+        <div class="blog-flow">
+          <div class="flow-step">
+            <div class="flow-num">1</div>
+            <div>
+              <h3>A submitter creates an approval request</h3>
+              <p>The request links the opportunity, quote, exception notes, and business context that need review.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">2</div>
+            <div>
+              <h3>The system evaluates policy thresholds</h3>
+              <p>Discount, payment terms, margin, and related rule inputs are checked against approval policy logic.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">3</div>
+            <div>
+              <h3>AI generates a decision brief</h3>
+              <p>The product summarizes the deal into a format an approver can read in seconds, not minutes.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">4</div>
+            <div>
+              <h3>Approvers review benchmark context and recommendation</h3>
+              <p>Similar deals, risk signals, and recommendation reasoning make the decision easier and more consistent.</p>
+            </div>
+          </div>
+
+          <div class="flow-step">
+            <div class="flow-num">5</div>
+            <div>
+              <h3>Decision gets recorded with clarity</h3>
+              <p>Approvers act with better context, faster turnaround, and stronger alignment to policy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Screens</div>
+          <h2>The product page should prove the product is real.</h2>
+          <p>
+            Use your strongest screenshots here. They do more for conversion than long paragraphs ever will.
+          </p>
+        </div>
+
+        <div class="blog-flow">
+          <div class="media-card">
+            <img src="./App Home.png" alt="Smart AI Approvals app home" />
+            <div class="media-caption">App home — a simple entry point for submitters, approvers, and admins.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Approval Request record.png" alt="Approval Request record" />
+            <div class="media-caption">Approval request record — the core workflow object for each deal approval.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./AI Analysis.png" alt="AI analysis screen" />
+            <div class="media-caption">AI Analysis — structured narrative, KPI highlights, risks, and recommendation context.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Similar Deals Benchmark & Risk Signals.png" alt="Similar deals benchmark and risk signals" />
+            <div class="media-caption">Benchmark + Risk Signals — historical context and exceptions surfaced in one place.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Recommendation Reasoning & decision buttons.png" alt="Recommendation reasoning and decision controls" />
+            <div class="media-caption">Recommendation Reasoning — approvers can act immediately with clear supporting logic.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Screenshot 2026-03-20 at 4.23.01 PM.png" alt="Ask AI experience" />
+            <div class="media-caption">Ask AI — follow-up questions directly inside the approval workflow.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Why it matters</div>
+          <h2>Products go viral when the value is obvious.</h2>
+          <p>
+            Buyers do not install tools because they are interesting. They install them because the outcome is clear.
+          </p>
+        </div>
+
+        <div class="proof-strip">
+          <div class="proof-box">
+            <div class="num">Faster</div>
+            <div class="label">approval turnaround</div>
+          </div>
+          <div class="proof-box">
+            <div class="num">Better</div>
+            <div class="label">decision quality</div>
+          </div>
+          <div class="proof-box">
+            <div class="num">Less</div>
+            <div class="label">manual review work</div>
+          </div>
+          <div class="proof-box">
+            <div class="num">More</div>
+            <div class="label">deal confidence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container two-col">
+        <div class="section-head">
+          <div class="section-kicker">FAQ</div>
+          <h2>Answer objections before they become blockers.</h2>
+          <p>
+            A high-conversion product page reduces uncertainty. These are the questions buyers usually ask first.
+          </p>
+        </div>
+
+        <div class="card faq-list">
+          <div class="faq-item">
+            <strong>Does AI approve deals automatically?</strong>
+            <div class="muted">No. AI supports decisions. Human approvers and policy controls remain in charge.</div>
+          </div>
+
+          <div class="faq-item">
+            <strong>Do I need Salesforce CPQ?</strong>
+            <div class="muted">No. The product works with Opportunity-based approvals and can use quote context when available.</div>
+          </div>
+
+          <div class="faq-item">
+            <strong>What data does the product use?</strong>
+            <div class="muted">Structured deal data such as pricing, terms, policy context, and approval request inputs.</div>
+          </div>
+
+          <div class="faq-item">
+            <strong>Who is this built for?</strong>
+            <div class="muted">RevOps, Sales Ops, Finance, Deal Desk, and sales leaders who care about revenue velocity.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="install">
+      <div class="container">
+        <div class="install">
+          <h2>Install Smart AI Approvals and make approvals feel modern.</h2>
+          <p>
+            Go from fragmented deal context to a clear, decision-ready workflow inside Salesforce.
+          </p>
+
+          <div class="hero-ctas">
+            <a href="YOUR_PRODUCTION_INSTALL_LINK" class="btn btn-primary">Install in Production</a>
+            <a href="YOUR_SANDBOX_INSTALL_LINK" class="btn btn-secondary">Install in Sandbox</a>
+            <a href="./README.md" class="btn btn-secondary">View GitHub Docs</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="divider"></div>
+      <p style="margin-top: 24px;">
+        Smart AI Approvals — AI-powered approval intelligence for Salesforce.
+      </p>
     </div>
-  </div>
-
-  <div class="section">
-    <h2>Built for Revenue Teams</h2>
-    <p>RevOps • Sales Ops • Finance • Deal Desk • Leadership</p>
-  </div>
-
-  <div class="section">
-    <h2>Start Now</h2>
-
-    <div class="cta">
-      <a href="#" class="primary">Install Now</a>
-    </div>
-  </div>
-
-</div>
-
+  </footer>
 </body>
 </html>
