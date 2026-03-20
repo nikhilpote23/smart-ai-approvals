@@ -116,7 +116,11 @@ Recommendation
 
 ## 🚀 Install Now
 
-👉 [Install](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
+## 🚀 Install Now
+
+👉 [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
+
+👉 [Install in Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
 
 ---
 
