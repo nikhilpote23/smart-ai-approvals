@@ -116,9 +116,7 @@ Recommendation
 
 ## 🚀 Install Now
 
-👉 [Install](#)
-
-*(Replace with your actual install links)*
+👉 [Install](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
 
 ---
 
