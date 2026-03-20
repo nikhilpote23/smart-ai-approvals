@@ -18,9 +18,7 @@ Smart AI Approvals transforms complex Salesforce approvals into **clear, executi
 
 ## 🎥 See It In Action
 
-<video src="./smartAIApprovals.mp4" controls width="800">
-  Your browser does not support the video tag.
-</video>
+👉 [Watch Video](./smartAIApprovals.mp4)
 
 > ⚡ Demo Coming Soon: From fragmented data → clear approval decision
 
