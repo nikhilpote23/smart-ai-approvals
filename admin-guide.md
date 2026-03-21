@@ -40,6 +40,12 @@ Map:
 - create custom setting record with Named Credential Name, LLM Provider, API Key
 - validate connection
 
+List of Supported LLM Providers:
+- OpenAI
+- Gemini
+- Groq
+- Claude/Databricks
+  
 ---
 
 ## Step 5 — Validate
