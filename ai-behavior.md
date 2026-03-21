@@ -20,6 +20,19 @@ Smart AI Approvals uses AI for decision guidance only.
 
 ---
 
+## Bring Your Own LLM (BYOM)
+
+Smart AI Approvals does not require a bundled model subscription.
+
+Customers choose which LLM provider to use and configure their own connection and credentials.
+
+This gives teams flexibility over:
+- provider preference
+- cost management
+- security posture
+
+---
+
 ## Data Usage
 
 Only structured deal data is sent.
