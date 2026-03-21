@@ -6,21 +6,25 @@
   <title>Smart AI Approvals</title>
   <meta
     name="description"
-    content="AI-powered approval intelligence for Salesforce. Turn fragmented approvals into clear, executive-ready decisions."
+    content="Smart AI Approvals is a free AI decision engine for Salesforce approvals. Bring your own LLM, reduce approval friction, and turn fragmented deal reviews into clear, decision-ready approvals."
   />
 
   <style>
     :root {
       --bg: #f7f9fc;
       --surface: #ffffff;
-      --surface-2: #f1f5fb;
+      --surface-2: #f3f7fd;
       --text: #102a56;
       --muted: #5d6f8b;
       --border: #d9e2ef;
       --primary: #1f6fff;
       --primary-dark: #0f5ae0;
       --accent: #10b981;
+      --accent-2: #8b5cf6;
+      --warning: #f59e0b;
+      --danger: #ef4444;
       --shadow: 0 12px 30px rgba(16, 42, 86, 0.08);
+      --shadow-lg: 0 24px 50px rgba(16, 42, 86, 0.16);
       --radius: 18px;
       --max: 1180px;
     }
@@ -63,7 +67,7 @@
       z-index: 50;
       backdrop-filter: blur(14px);
       background: rgba(247, 249, 252, 0.88);
-      border-bottom: 1px solid rgba(217, 226, 239, 0.8);
+      border-bottom: 1px solid rgba(217, 226, 239, 0.9);
     }
 
     .nav {
@@ -79,20 +83,20 @@
       align-items: center;
       gap: 12px;
       font-weight: 800;
-      font-size: 30px;
+      font-size: 28px;
       letter-spacing: -0.04em;
     }
 
     .brand-badge {
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       background: linear-gradient(135deg, #1f6fff, #10b981);
       display: grid;
       place-items: center;
       color: white;
-      font-weight: 800;
-      font-size: 18px;
+      font-weight: 900;
+      font-size: 16px;
       box-shadow: var(--shadow);
     }
 
@@ -101,8 +105,9 @@
       align-items: center;
       gap: 22px;
       flex-wrap: wrap;
-      font-weight: 600;
+      font-weight: 700;
       color: var(--muted);
+      font-size: 15px;
     }
 
     .nav-links a:hover {
@@ -117,17 +122,17 @@
       border-radius: 999px;
       background: var(--text);
       color: white;
-      font-weight: 700;
+      font-weight: 800;
       box-shadow: var(--shadow);
     }
 
     .hero {
-      padding: 56px 0 24px;
+      padding: 54px 0 24px;
     }
 
     .hero-wrap {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
+      grid-template-columns: 1.12fr 0.88fr;
       gap: 28px;
       align-items: center;
     }
@@ -140,22 +145,30 @@
       border-radius: 999px;
       background: #eaf1ff;
       color: var(--primary-dark);
-      font-weight: 700;
+      font-weight: 800;
       font-size: 14px;
       margin-bottom: 18px;
     }
 
     h1 {
       margin: 0 0 16px;
-      font-size: clamp(44px, 8vw, 78px);
-      line-height: 0.98;
-      letter-spacing: -0.06em;
+      font-size: clamp(42px, 8vw, 82px);
+      line-height: 0.95;
+      letter-spacing: -0.065em;
       font-weight: 900;
     }
 
-    .hero p.lead {
+    .hero-subhead {
       margin: 0;
-      font-size: clamp(18px, 2.3vw, 24px);
+      font-size: clamp(20px, 2.4vw, 28px);
+      color: var(--text);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .hero p.lead {
+      margin: 18px 0 0;
+      font-size: clamp(18px, 2.1vw, 22px);
       color: var(--muted);
       max-width: 760px;
     }
@@ -181,6 +194,7 @@
       border-radius: 999px;
       font-weight: 800;
       transition: 0.2s ease;
+      border: 1px solid transparent;
     }
 
     .btn-primary {
@@ -204,18 +218,38 @@
       background: #f8fbff;
     }
 
+    .trust-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: white;
+      color: var(--muted);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
     .hero-card {
       background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 22px;
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-lg);
     }
 
-    .hero-card .mini-label {
+    .mini-label {
       font-size: 13px;
       color: var(--muted);
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       margin-bottom: 14px;
@@ -247,38 +281,20 @@
       font-size: 20px;
       font-weight: 900;
       letter-spacing: -0.03em;
+      line-height: 1.2;
     }
 
     .metric.green { background: #edfdf5; }
     .metric.orange { background: #fff7ed; }
     .metric.blue { background: #eff6ff; }
-
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: white;
-      color: var(--muted);
-      font-weight: 700;
-      font-size: 14px;
-    }
+    .metric.purple { background: #f5f3ff; }
 
     section {
-      padding: 28px 0;
+      padding: 30px 0;
     }
 
     .section-head {
-      max-width: 860px;
+      max-width: 880px;
       margin-bottom: 24px;
     }
 
@@ -293,9 +309,9 @@
 
     .section-head h2 {
       margin: 0 0 12px;
-      font-size: clamp(32px, 5vw, 52px);
+      font-size: clamp(32px, 5vw, 54px);
       line-height: 1.05;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.055em;
     }
 
     .section-head p {
@@ -321,14 +337,16 @@
 
     .problem-list,
     .value-list,
-    .faq-list {
+    .faq-list,
+    .proof-list {
       display: grid;
       gap: 14px;
     }
 
     .problem-item,
     .value-item,
-    .faq-item {
+    .faq-item,
+    .proof-item {
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 16px 18px;
@@ -337,7 +355,8 @@
 
     .problem-item strong,
     .value-item strong,
-    .faq-item strong {
+    .faq-item strong,
+    .proof-item strong {
       display: block;
       margin-bottom: 6px;
       font-size: 18px;
@@ -345,61 +364,6 @@
 
     .muted {
       color: var(--muted);
-    }
-
-    .blog-flow {
-      display: grid;
-      gap: 18px;
-    }
-
-    .flow-step {
-      display: grid;
-      grid-template-columns: 46px 1fr;
-      gap: 16px;
-      align-items: start;
-      padding: 18px;
-      background: #fff;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-    }
-
-    .flow-num {
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      background: #eaf1ff;
-      color: var(--primary-dark);
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      font-size: 18px;
-    }
-
-    .flow-step h3 {
-      margin: 0 0 6px;
-      font-size: 22px;
-      letter-spacing: -0.03em;
-    }
-
-    .flow-step p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .media-card {
-      background: white;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .media-caption {
-      padding: 16px 20px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      background: #fbfdff;
-      font-weight: 600;
     }
 
     .feature-grid {
@@ -438,6 +402,105 @@
       color: var(--muted);
     }
 
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .compare-card {
+      border-radius: 22px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      background: white;
+    }
+
+    .compare-card.bad {
+      background: linear-gradient(180deg, #fff5f5 0%, #fff 100%);
+      border-color: #ffd7d7;
+    }
+
+    .compare-card.good {
+      background: linear-gradient(180deg, #effdf5 0%, #fff 100%);
+      border-color: #c9f0dc;
+    }
+
+    .compare-card h3 {
+      margin: 0 0 10px;
+      font-size: 26px;
+      letter-spacing: -0.04em;
+    }
+
+    .compare-list {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .compare-list li {
+      margin: 8px 0;
+    }
+
+    .compare-card.bad h3 { color: var(--danger); }
+    .compare-card.good h3 { color: var(--accent); }
+
+    .media-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .media-caption {
+      padding: 16px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      background: #fbfdff;
+      font-weight: 600;
+    }
+
+    .blog-flow {
+      display: grid;
+      gap: 18px;
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 46px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .flow-num {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: #eaf1ff;
+      color: var(--primary-dark);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      font-size: 18px;
+    }
+
+    .flow-step h3 {
+      margin: 0 0 6px;
+      font-size: 22px;
+      letter-spacing: -0.03em;
+    }
+
+    .flow-step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
     .proof-strip {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -465,6 +528,11 @@
       font-weight: 700;
     }
 
+    .screenshot-stack {
+      display: grid;
+      gap: 18px;
+    }
+
     .install {
       background: linear-gradient(135deg, #102a56 0%, #1a4c9c 100%);
       color: white;
@@ -482,7 +550,7 @@
 
     .install p {
       margin: 0;
-      color: rgba(255,255,255,0.82);
+      color: rgba(255,255,255,0.84);
       font-size: 18px;
       max-width: 760px;
     }
@@ -495,6 +563,31 @@
       background: rgba(255,255,255,0.08);
       border-color: rgba(255,255,255,0.2);
       color: white;
+    }
+
+    .install .pill {
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.16);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .docs-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: #fff;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-weight: 700;
+      box-shadow: var(--shadow);
     }
 
     footer {
@@ -513,7 +606,8 @@
       .hero-wrap,
       .two-col,
       .feature-grid,
-      .proof-strip {
+      .proof-strip,
+      .comparison {
         grid-template-columns: 1fr;
       }
 
@@ -541,8 +635,7 @@
         grid-template-columns: 1fr;
       }
 
-      .hero-ctas,
-      .cta-stack {
+      .hero-ctas {
         flex-direction: column;
       }
 
@@ -554,6 +647,10 @@
       .feature-grid {
         grid-template-columns: 1fr;
       }
+
+      .proof-strip {
+        grid-template-columns: 1fr 1fr;
+      }
     }
   </style>
 </head>
@@ -564,17 +661,17 @@
       <a href="#top" class="brand">
         <span class="brand-badge">AI</span>
         <span>Smart AI Approvals</span>
-        <span><div class="eyebrow">⚡ AI-powered approval intelligence for Salesforce</div></span>
       </a>
 
       <div class="nav-links">
         <a href="#problem">Problem</a>
-        <a href="#solution">Solution</a>
+        <a href="#ai-engine">AI Engine</a>
         <a href="#how">How It Works</a>
+        <a href="#screens">Screens</a>
         <a href="#faq">FAQ</a>
       </div>
 
-      <a href="#install" class="nav-cta">Install Now</a>
+      <a href="#install" class="nav-cta">Install Free</a>
     </div>
   </div>
 
@@ -582,23 +679,34 @@
     <section class="hero">
       <div class="container hero-wrap">
         <div>
-          <!-- <div class="eyebrow">⚡ Salesforce approvals are still too manual</div> -->
+          <div class="eyebrow">⚡ This replaces your approval workflow with one decision screen</div>
 
           <h1>
-            Close deals faster.<br />
-            Approve with clarity.
+            AI decides first.<br />
+            Humans approve faster.
           </h1>
 
+          <p class="hero-subhead">
+            A free AI decision engine for Salesforce approvals.
+          </p>
+
           <p class="lead">
-            Smart AI Approvals turns fragmented Salesforce approval workflows into
-            <strong>clear, executive-ready decisions</strong> with AI-generated deal briefs,
-            policy checks, historical benchmarks, and recommendation guidance.
+            Smart AI Approvals reads the deal, finds risk, compares similar approvals,
+            applies policy logic, and generates a <strong>decision-ready approval brief</strong>
+            before a human reviewer even starts.
           </p>
 
           <div class="trust-row" style="margin-top:18px;">
-             <span class="pill">✅ Completely Free</span>
-             <span class="pill">🧠 Bring Your Own LLM</span>
-             <span class="pill">🔐 Your model, your API key</span>
+            <span class="pill">✅ Completely Free</span>
+            <span class="pill">🧠 Bring Your Own LLM</span>
+            <span class="pill">🔐 Your model, your API key</span>
+            <span class="pill">⚡ No lock-in</span>
+          </div>
+
+          <div class="hero-ctas">
+            <a href="YOUR_PRODUCTION_INSTALL_LINK" class="btn btn-primary">Install in Production</a>
+            <a href="YOUR_SANDBOX_INSTALL_LINK" class="btn btn-secondary">Install in Sandbox</a>
+            <a href="#video" class="btn btn-secondary">Watch Demo</a>
           </div>
 
           <div class="trust-row">
@@ -611,29 +719,29 @@
         </div>
 
         <div class="hero-card">
-          <div class="mini-label">What approvers get instantly</div>
+          <div class="mini-label">What the AI engine does instantly</div>
 
           <div class="hero-grid">
             <div class="metric blue">
-              <div class="label">Deal summary</div>
-              <div class="value">ACV • Discount • Terms</div>
+              <div class="label">Reads the deal</div>
+              <div class="value">Pricing • terms • context</div>
             </div>
             <div class="metric green">
-              <div class="label">Risk signals</div>
+              <div class="label">Finds risk</div>
               <div class="value">Policy & pricing issues</div>
             </div>
-            <div class="metric">
-              <div class="label">Benchmark</div>
-              <div class="value">Similar deals context</div>
+            <div class="metric purple">
+              <div class="label">Learns from history</div>
+              <div class="value">Similar deal benchmark</div>
             </div>
             <div class="metric orange">
-              <div class="label">Recommendation</div>
+              <div class="label">Recommends action</div>
               <div class="value">Approve / Reject / Conditions</div>
             </div>
           </div>
 
           <div class="trust-row" style="margin-top:18px;">
-            <span class="pill">1 deal → 1 decision brief</span>
+            <span class="pill">1 deal → 1 AI decision brief</span>
           </div>
         </div>
       </div>
@@ -645,111 +753,118 @@
           <div class="section-kicker">Why teams try it fast</div>
           <h2>No license fee. No lock-in. Your LLM, your choice.</h2>
           <p>
-            Smart AI Approvals is completely free to use. You bring your own LLM provider,
-            credentials, so you stay in control of cost, security, and flexibility.
+            Smart AI Approvals is completely free. You choose the LLM provider,
+            bring your own credentials, and keep control of cost, security, and model flexibility.
           </p>
         </div>
-    
+
         <div class="feature-grid">
           <div class="feature-card">
             <div class="icon">💸</div>
             <h3>Completely Free</h3>
-            <p>No product license fee to get started.</p>
+            <p>No product license fee to get started. Install and use it without a paid subscription.</p>
           </div>
-    
+
           <div class="feature-card">
             <div class="icon">🧠</div>
             <h3>Bring Your Own LLM</h3>
-            <p>Use the provider that fit your architecture and budget.</p>
+            <p>Use the provider and model that fit your architecture, budget, and AI strategy.</p>
           </div>
-    
+
           <div class="feature-card">
             <div class="icon">🔐</div>
             <h3>You Control the Stack</h3>
-            <p>Use your own API key, endpoint, and provider configuration through Salesforce setup.</p>
+            <p>Your API key, your model choice, your configuration, inside your Salesforce setup.</p>
           </div>
         </div>
       </div>
     </section>
-    
+
     <section id="problem">
-      <div class="container two-col">
+      <div class="container">
         <div class="section-head">
           <div class="section-kicker">The problem</div>
-          <h2>Approvals slow revenue when context is scattered everywhere.</h2>
+          <h2>Approvals are not slow because teams are bad. They are slow because the context is broken.</h2>
           <p>
-            Most approvers still jump across Opportunity, Quote, pricing fields, contract terms,
+            Approvers still have to navigate across Opportunity, Quote, pricing fields, contract terms,
             exception notes, and approval comments just to understand a single deal.
           </p>
         </div>
 
-        <div class="card problem-list">
-          <div class="problem-item">
-            <strong>Too many records</strong>
-            <div class="muted">Decision context is spread across multiple Salesforce objects.</div>
+        <div class="comparison">
+          <div class="compare-card bad">
+            <h3>Before</h3>
+            <ul class="compare-list">
+              <li>5+ records to inspect</li>
+              <li>20+ fields to interpret</li>
+              <li>Manual policy checks</li>
+              <li>Slack and email back-and-forth</li>
+              <li>No fast “have we done this before?” answer</li>
+              <li>Slow approvals that hurt revenue velocity</li>
+            </ul>
           </div>
-          <div class="problem-item">
-            <strong>Too much manual interpretation</strong>
-            <div class="muted">Approvers must read, compare, and piece together the story themselves.</div>
-          </div>
-          <div class="problem-item">
-            <strong>No fast benchmark context</strong>
-            <div class="muted">“Have we approved something like this before?” is still a manual question.</div>
-          </div>
-          <div class="problem-item">
-            <strong>Slow decisions cost deals</strong>
-            <div class="muted">The longer approvals take, the more revenue velocity suffers.</div>
+
+          <div class="compare-card good">
+            <h3>After</h3>
+            <ul class="compare-list">
+              <li>1 decision-ready approval brief</li>
+              <li>AI-generated context summary</li>
+              <li>Risk and policy signals surfaced instantly</li>
+              <li>Historical benchmark comparison</li>
+              <li>Clear recommendation with reasoning</li>
+              <li>Faster, more confident approvals</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="solution">
+    <section id="ai-engine">
       <div class="container">
         <div class="section-head">
-          <div class="section-kicker">The solution</div>
-          <h2>One approval request becomes one decision-ready brief.</h2>
+          <div class="section-kicker">AI is not a feature here</div>
+          <h2>This is an AI decision system for revenue approvals.</h2>
           <p>
-            Smart AI Approvals gives approvers a structured summary with what matters most:
-            deal highlights, risk signals, policy reasoning, benchmark context, and a clear recommendation.
+            Smart AI Approvals does not just summarize text. It acts like a decision layer:
+            reading the deal, detecting risk, comparing history, and generating a recommendation before the reviewer acts.
           </p>
         </div>
 
         <div class="feature-grid">
           <div class="feature-card">
-            <div class="icon">📄</div>
-            <h3>AI Deal Brief</h3>
-            <p>Generate a concise summary of the opportunity, quote, pricing, terms, and approval context.</p>
+            <div class="icon">🧾</div>
+            <h3>Reads the deal</h3>
+            <p>Understands pricing, payment terms, contract context, quote details, and approval request inputs.</p>
           </div>
 
           <div class="feature-card">
             <div class="icon">⚠️</div>
-            <h3>Risk Signals</h3>
-            <p>Surface discount, payment term, margin, and policy exceptions instantly.</p>
+            <h3>Detects risk</h3>
+            <p>Flags policy violations, risk signals, missing data, and unusual commercial conditions.</p>
           </div>
 
           <div class="feature-card">
             <div class="icon">📊</div>
-            <h3>Similar Deal Benchmark</h3>
-            <p>Give approvers historical context so they can compare the current request to prior deals.</p>
+            <h3>Compares history</h3>
+            <p>Surfaces similar-deal context so the approver can see how the current request stacks up.</p>
           </div>
 
           <div class="feature-card">
-            <div class="icon">🧭</div>
-            <h3>Recommendation Reasoning</h3>
-            <p>Explain why the system recommends approve, reject, or approve with conditions.</p>
+            <div class="icon">✅</div>
+            <h3>Recommends action</h3>
+            <p>Produces approve, reject, or approve-with-conditions guidance with visible reasoning.</p>
           </div>
 
           <div class="feature-card">
             <div class="icon">💬</div>
-            <h3>Ask AI</h3>
-            <p>Let approvers ask follow-up questions without losing context or leaving the workflow.</p>
+            <h3>Answers follow-up questions</h3>
+            <p>Ask AI about the deal, the risk factors, or the recommendation directly inside the workflow.</p>
           </div>
 
           <div class="feature-card">
-            <div class="icon">🔐</div>
-            <h3>Policy Stays in Control</h3>
-            <p>AI supports decisions. Human approvers and deterministic rules remain the control layer.</p>
+            <div class="icon">🛡️</div>
+            <h3>Keeps policy in control</h3>
+            <p>AI supports the decision. Human approval authority and deterministic policy remain the final control layer.</p>
           </div>
         </div>
       </div>
@@ -759,9 +874,9 @@
       <div class="container">
         <div class="section-head">
           <div class="section-kicker">See it in action</div>
-          <h2>From fragmented data to a clear approval decision.</h2>
+          <h2>Watch a real approval go from fragmented data to a clear AI-driven decision brief.</h2>
           <p>
-            Watch the product turn a complex discount exception into a structured, explainable approval workflow.
+            This is the fastest way to understand the product. Watch the AI brief, the recommendation, and the decision flow come together in one screen.
           </p>
         </div>
 
@@ -771,7 +886,7 @@
             Your browser does not support the video tag.
           </video>
           <div class="media-caption">
-            Smart AI Approvals demo — AI brief, benchmark context, recommendation reasoning, and decision flow.
+            Smart AI Approvals demo — AI decision brief, benchmark context, recommendation reasoning, and approver workflow.
           </div>
         </div>
       </div>
@@ -781,9 +896,9 @@
       <div class="container">
         <div class="section-head">
           <div class="section-kicker">How it works</div>
-          <h2>A blog-style walkthrough of the product flow.</h2>
+          <h2>A blog-style product story that buyers can understand in under a minute.</h2>
           <p>
-            This is the exact story your buyer should understand within the first minute.
+            The strongest product pages do not just list features. They tell the transformation clearly.
           </p>
         </div>
 
@@ -792,40 +907,84 @@
             <div class="flow-num">1</div>
             <div>
               <h3>A submitter creates an approval request</h3>
-              <p>The request links the opportunity, quote, exception notes, and business context that need review.</p>
+              <p>The request brings together the opportunity, quote, exception notes, and deal context that need review.</p>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">2</div>
             <div>
-              <h3>The system evaluates policy thresholds</h3>
-              <p>Discount, payment terms, margin, and related rule inputs are checked against approval policy logic.</p>
+              <h3>The AI engine reads the deal and policy inputs</h3>
+              <p>Commercial terms, pricing, policy thresholds, and related signals are processed before the approver begins.</p>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">3</div>
             <div>
-              <h3>AI generates a decision brief</h3>
-              <p>The product summarizes the deal into a format an approver can read in seconds, not minutes.</p>
+              <h3>The system creates an AI decision brief</h3>
+              <p>The deal is transformed into a clear summary with deal highlights, risks, benchmark context, and recommendation guidance.</p>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">4</div>
             <div>
-              <h3>Approvers review benchmark context and recommendation</h3>
-              <p>Similar deals, risk signals, and recommendation reasoning make the decision easier and more consistent.</p>
+              <h3>The approver gets clarity, not clutter</h3>
+              <p>Instead of navigating multiple records, the reviewer sees one page with the context needed to decide faster.</p>
             </div>
           </div>
 
           <div class="flow-step">
             <div class="flow-num">5</div>
             <div>
-              <h3>Decision gets recorded with clarity</h3>
-              <p>Approvers act with better context, faster turnaround, and stronger alignment to policy.</p>
+              <h3>The final decision stays with the human</h3>
+              <p>AI supports the process. Policy logic and authorized approvers remain responsible for the actual decision.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screens">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">Product proof</div>
+          <h2>Show the product. Prove the product. Convert the visitor.</h2>
+          <p>
+            These screens do the heavy lifting: they make the product real, tangible, and easier to trust.
+          </p>
+        </div>
+
+        <div class="screenshot-stack">
+          <div class="media-card">
+            <img src="./App Home.png" alt="Smart AI Approvals app home" />
+            <div class="media-caption">App home — a lightweight entry point for submitters, approvers, and admins.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Approval Request record.png" alt="Approval Request record" />
+            <div class="media-caption">Approval request record — the main workflow object where the deal enters review.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./AI Analysis.png" alt="AI analysis screen" />
+            <div class="media-caption">AI Analysis — structured summary, key issue, financial impact, risk flags, and recommended action.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Similar Deals Benchmark & Risk Signals.png" alt="Similar deals benchmark and risk signals" />
+            <div class="media-caption">Similar Deals + Risk Signals — the approver gets historical context and risk surfaced immediately.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Recommendation Reasoning & decision buttons.png" alt="Recommendation reasoning and decision controls" />
+            <div class="media-caption">Recommendation Reasoning — visible logic plus direct approve/reject action controls.</div>
+          </div>
+
+          <div class="media-card">
+            <img src="./Screenshot 2026-03-20 at 4.23.01 PM.png" alt="Ask AI experience" />
+            <div class="media-caption">Ask AI — follow-up questions directly inside the approval workflow.</div>
           </div>
         </div>
       </div>
@@ -835,9 +994,9 @@
       <div class="container">
         <div class="section-head">
           <div class="section-kicker">Why it matters</div>
-          <h2>Products go viral when the value is obvious.</h2>
+          <h2>The outcome is the product.</h2>
           <p>
-            Buyers do not install tools because they are interesting. They install them because the outcome is clear.
+            People do not install an AI approval tool because it sounds interesting. They install it because the business result is obvious.
           </p>
         </div>
 
@@ -852,11 +1011,43 @@
           </div>
           <div class="proof-box">
             <div class="num">Less</div>
-            <div class="label">manual review work</div>
+            <div class="label">manual review</div>
           </div>
           <div class="proof-box">
             <div class="num">More</div>
             <div class="label">deal confidence</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container two-col">
+        <div class="section-head">
+          <div class="section-kicker">Distribution hook</div>
+          <h2>What smart RevOps teams are doing differently.</h2>
+          <p>
+            The most forward-leaning revenue teams are no longer reviewing every deal manually.
+            They are using AI to standardize approvals, surface risk early, and reduce decision latency.
+          </p>
+        </div>
+
+        <div class="card proof-list">
+          <div class="proof-item">
+            <strong>They let AI read the deal first</strong>
+            <div class="muted">The reviewer starts with context, not raw records.</div>
+          </div>
+          <div class="proof-item">
+            <strong>They use benchmarks to reduce guesswork</strong>
+            <div class="muted">Historical comparison turns “have we done this before?” into an instant answer.</div>
+          </div>
+          <div class="proof-item">
+            <strong>They keep humans in control</strong>
+            <div class="muted">AI supports decision quality without replacing governance.</div>
+          </div>
+          <div class="proof-item">
+            <strong>This is that system</strong>
+            <div class="muted">Smart AI Approvals is the AI decision layer for revenue approvals in Salesforce.</div>
           </div>
         </div>
       </div>
@@ -868,11 +1059,21 @@
           <div class="section-kicker">FAQ</div>
           <h2>Answer objections before they become blockers.</h2>
           <p>
-            A high-conversion product page reduces uncertainty. These are the questions buyers usually ask first.
+            A high-conversion product page reduces uncertainty. These are the questions buyers ask first.
           </p>
         </div>
 
         <div class="card faq-list">
+          <div class="faq-item">
+            <strong>Is Smart AI Approvals really free?</strong>
+            <div class="muted">Yes. Smart AI Approvals is completely free to install and use.</div>
+          </div>
+
+          <div class="faq-item">
+            <strong>Can I choose my own LLM provider?</strong>
+            <div class="muted">Yes. Smart AI Approvals follows a Bring Your Own LLM model, so you choose the provider, model, and credentials.</div>
+          </div>
+
           <div class="faq-item">
             <strong>Does AI approve deals automatically?</strong>
             <div class="muted">No. AI supports decisions. Human approvers and policy controls remain in charge.</div>
@@ -880,17 +1081,7 @@
 
           <div class="faq-item">
             <strong>Do I need Salesforce CPQ?</strong>
-            <div class="muted">Yes. The product needs Salesforce CPQ. We will make it available to support standard Quote & Opportunity in future. </div>
-          </div>
-
-          <div class="faq-item">
-            <strong>What data does the product use?</strong>
-            <div class="muted">Structured deal data such as pricing, terms, policy context, and approval request inputs.</div>
-          </div>
-
-          <div class="faq-item">
-            <strong>Who is this built for?</strong>
-            <div class="muted">RevOps, Sales Ops, Finance, Deal Desk, and sales leaders who care about revenue velocity.</div>
+            <div class="muted">No. The product works with Opportunity-based approvals and can use quote context when available.</div>
           </div>
         </div>
       </div>
@@ -899,15 +1090,30 @@
     <section id="install">
       <div class="container">
         <div class="install">
-          <h2>Install Smart AI Approvals and make approvals feel modern.</h2>
+          <h2>Install Smart AI Approvals for free and make approvals feel modern.</h2>
           <p>
-            Install Smart AI Approvals for free and connect the LLM provider of your choice.
-            Go from fragmented deal context to a clear, decision-ready workflow inside Salesforce.
+            Bring your own LLM. Keep policy in control. Turn fragmented deal context into a clear, AI-powered decision workflow inside Salesforce.
           </p>
 
+          <div class="trust-row">
+            <span class="pill">✅ Free</span>
+            <span class="pill">🧠 BYOM</span>
+            <span class="pill">🔐 No lock-in</span>
+          </div>
+
           <div class="hero-ctas">
-            <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG" class="btn btn-primary">Install Now</a>
-            <a href="https://github.com/nikhilpote23/smart-ai-approvals" class="btn btn-secondary">View GitHub Docs</a>
+            <a href="https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG" class="btn btn-primary">Install in Production</a>
+            <a href="https://test.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG" class="btn btn-primary">Install in Sandbox</a>
+            <a href="https://github.com/nikhilpote23/smart-ai-approvals" class="btn btn-secondary">View GitHub</a>
+          </div>
+
+          <div class="docs-links">
+            <a href="./README.md" class="doc-link">README</a>
+            <a href="./quickstart.md" class="doc-link">Quickstart</a>
+            <a href="./admin-guide.md" class="doc-link">Admin Guide</a>
+            <a href="./user-guide.md" class="doc-link">User Guide</a>
+            <a href="./ai-behavior.md" class="doc-link">AI Behavior</a>
+            <a href="./security.md" class="doc-link">Security</a>
           </div>
         </div>
       </div>
@@ -918,7 +1124,7 @@
     <div class="container">
       <div class="divider"></div>
       <p style="margin-top: 24px;">
-        Smart AI Approvals — AI-powered approval intelligence for Salesforce.
+        Smart AI Approvals — a free AI decision engine for Salesforce approvals.
       </p>
     </div>
   </footer>
