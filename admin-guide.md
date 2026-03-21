@@ -40,7 +40,7 @@ Map:
 - create custom setting record with Named Credential Name, LLM Provider, API Key
 - validate connection
 
-# LLM Configuration Model
+### LLM Configuration Model
 
 Smart AI Approvals uses a Bring Your Own LLM (BYOM) approach.
 
