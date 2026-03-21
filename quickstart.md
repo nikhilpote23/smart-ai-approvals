@@ -26,6 +26,12 @@ Set up Custom setting with your AI provider information.
 Set up Named Credential for your AI provider to make LLM callout.
 Add ApprovalBrief component in a new tab "AI Deal Brief" on Approval Request lightning page.
 
+List of Supported LLM Providers:
+- OpenAI
+- Gemini
+- Groq
+- Claude/Databricks
+
 ---
 
 ## Step 4 — Create First Approval
