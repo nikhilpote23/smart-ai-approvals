@@ -14,6 +14,10 @@ Not enough context.
 
 Smart AI Approvals transforms complex Salesforce approvals into **clear, executive-ready decisions**.
 
+> ✅ Completely free  
+> 🧠 Bring Your Own LLM (BYOM)  
+> 🔐 Use your preferred LLM provider, endpoint, and API key
+
 ---
 
 ## 🎥 See It In Action
@@ -21,6 +25,15 @@ Smart AI Approvals transforms complex Salesforce approvals into **clear, executi
 👉 [Watch Video](./smartAIApprovals.mp4)
 
 > ⚡ Demo Coming Soon: From fragmented data → clear approval decision
+
+---
+
+## Why Teams Try It Fast
+
+- No license fee
+- No vendor lock-in
+- Use your preferred LLM provider
+- Keep control of model choice, cost, and credentials
 
 ---
 
@@ -35,6 +48,7 @@ You get:
 - 📏 Policy evaluation (rule-based checks)
 - 📈 Similar deal benchmarks (historical context)
 - ✅ Clear recommendation (approve / reject / conditions)
+- 🧠 AI Assistant to help you get more context
 
 ---
 
@@ -101,6 +115,7 @@ Recommendation
 - 📉 Reduced manual review
 - 💰 Improved margin control
 - 📊 Consistent policy enforcement
+- 🧠 And the best part - Its completely FREE & you can BRING YOUR OWN LLM(BYOM)
 
 ---
 
@@ -116,7 +131,9 @@ Recommendation
 
 ## 🚀 Install Now
 
-## 🚀 Install Now
+Smart AI Approvals is completely free.
+
+Bring your own LLM provider and connect it using your own API key.
 
 👉 [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
 
