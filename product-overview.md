@@ -41,6 +41,16 @@ A single decision interface:
 
 ---
 
+## Pricing and LLM Provider Flexibility
+
+Smart AI Approvals is completely free to install and use.
+
+The product follows a Bring Your Own LLM (BYOM) model:
+- you choose the LLM provider
+- you configure your own credentials
+
+---
+
 ## Supported Objects
 
 - Salesforce CPQ Quote
