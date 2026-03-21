@@ -16,7 +16,7 @@ Not enough context.
 
 Smart AI Approvals transforms complex Salesforce approvals into **clear, executive-ready decisions**.
 
-> ✅ Completely free  
+> ✅ Completely free, no usage limit  
 > 🧠 Bring Your Own LLM (BYOM)  
 > 🔐 Use your preferred LLM provider, endpoint, and API key
 
