@@ -33,7 +33,7 @@ Smart AI Approvals transforms complex Salesforce approvals into **clear, executi
 - No license fee
 - No vendor lock-in
 - Use your preferred LLM provider
-- Keep control of model choice, cost, and credentials
+- Keep control of cost, security and credentials
 
 ---
 
