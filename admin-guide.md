@@ -40,6 +40,12 @@ Map:
 - create custom setting record with Named Credential Name, LLM Provider, API Key
 - validate connection
 
+# LLM Configuration Model
+
+Smart AI Approvals uses a Bring Your Own LLM (BYOM) approach.
+
+Admins configure the LLM provider connection, credentials within their Salesforce environment.
+
 List of Supported LLM Providers:
 - OpenAI
 - Gemini
