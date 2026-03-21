@@ -1,5 +1,7 @@
 # 🚀 Smart AI Approvals
 
+> ✅ Completely free. Bring your own LLM. No lock-in.
+
 ## Salesforce approvals are still broken.
 
 Too many fields.  
