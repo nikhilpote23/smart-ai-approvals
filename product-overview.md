@@ -49,6 +49,12 @@ The product follows a Bring Your Own LLM (BYOM) model:
 - you choose the LLM provider
 - you configure your own credentials
 
+List of Supported LLM Providers:
+- OpenAI
+- Gemini
+- Groq
+- Claude/Databricks
+  
 ---
 
 ## Supported Objects
