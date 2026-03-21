@@ -12,6 +12,13 @@ Yes. Smart AI Approvals is completely free to install and use.
 
 Yes. Smart AI Approvals uses a Bring Your Own LLM (BYOM) model, so you can configure the LLM provider that fit your environment.
 
+List of Supported LLM Providers:
+
+- OpenAI
+- Gemini
+- Groq
+- Claude/Databricks
+
 ---
 
 ## Does AI approve deals?
