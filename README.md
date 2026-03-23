@@ -137,9 +137,9 @@ Smart AI Approvals is completely free.
 
 Bring your own LLM provider and connect it using your own API key.
 
-👉 [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
+👉 [Install in Production](https://login.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QSblYAG)
 
-👉 [Install in Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QJwfYAG)
+👉 [Install in Sandbox](https://test.salesforce.com/packaging/installPackage.apexp?p0=04tWU000000QSblYAG)
 
 ---
 
